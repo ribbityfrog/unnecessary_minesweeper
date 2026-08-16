@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://u3yks53qgywd"]
+
+[ext_resource type="Script" uid="uid://bedj2loha8rkm" path="res://scripts/nodes/player.gd" id="1_3vyb7"]
+[ext_resource type="SpriteFrames" uid="uid://bstx6idha135i" path="res://graphic/censored.tres" id="3_qhqgy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1662203932 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_3vyb7")
+camera = NodePath("PlayerCamera")
+metadata/_custom_type_script = "uid://bedj2loha8rkm"
+
+[node name="PlayerCamera" type="Camera3D" parent="." unique_id=1953818570]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0.5, -0.6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1665657152]
+shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=5719342]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, -0.25, -0.1506862)
+sprite_frames = ExtResource("3_qhqgy")
+autoplay = "default"
+frame = 3
+frame_progress = 0.75075006
