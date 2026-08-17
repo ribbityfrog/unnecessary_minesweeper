@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1cafcxk1exm0"
-path.s3tc="res://.godot/imported/censored.jpg-db6d1d9b154c9bf7a17899940c2c02be.s3tc.ctex"
+path.s3tc="res://.godot/imported/censored.jpg-66579dabb14eaced2857850bb8674028.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://graphic/censored.jpg"
-dest_files=["res://.godot/imported/censored.jpg-db6d1d9b154c9bf7a17899940c2c02be.s3tc.ctex"]
+source_file="res://nodes/player/assets/censored.jpg"
+dest_files=["res://.godot/imported/censored.jpg-66579dabb14eaced2857850bb8674028.s3tc.ctex"]
 
 [params]
 

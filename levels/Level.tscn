@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://di5pljuqhe7oc"]
 
-[ext_resource type="Script" uid="uid://8a8eohjtbwq4" path="res://scripts/nodes/minefield.gd" id="1_xubwl"]
+[ext_resource type="Script" uid="uid://8a8eohjtbwq4" path="res://nodes/minefield.gd" id="1_xubwl"]
 [ext_resource type="PackedScene" uid="uid://u3yks53qgywd" path="res://scenes/player.tscn" id="2_0ydld"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dfktb"]
@@ -23,10 +23,9 @@ size = Vector3(30, 1, 10)
 [node name="Minefield" type="Node3D" parent="." unique_id=1375420170 node_paths=PackedStringArray("player")]
 script = ExtResource("1_xubwl")
 width = 20
-gap_x = 0.5
-gap_y = 0.5
+gap_x = 1.0
+gap_y = 1.0
 player = NodePath("../Player")
-metadata/_custom_type_script = "uid://8a8eohjtbwq4"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1702823666]
 transform = Transform3D(0.92153895, 1.4901161e-08, -0.3882859, 0.18090776, 0.8848302, 0.42935774, 0.34356704, -0.46591383, 0.81540537, -7.1468544, 9.799591, 20.861975)
@@ -34,6 +33,7 @@ transform = Transform3D(0.92153895, 1.4901161e-08, -0.3882859, 0.18090776, 0.884
 [node name="Player" parent="." unique_id=886564007 instance=ExtResource("2_0ydld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20)
 collision_mask = 7
+speed_rotation = 0.1
 
 [node name="Platform" type="Node3D" parent="." unique_id=1865670729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
