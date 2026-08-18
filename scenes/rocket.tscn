@@ -4,25 +4,21 @@
 [ext_resource type="Script" uid="uid://btew01wuq5pv3" path="res://nodes/projectiles/rocket/rocket.gd" id="1_dkv7l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dkv7l"]
-radius = 0.1
-height = 0.45
+radius = 0.09
+height = 0.4
 
-[node name="Rocket" type="RigidBody3D" unique_id=1437792304]
+[node name="Rocket" type="Area3D" unique_id=929283777]
+disable_mode = 2
 collision_layer = 8
 collision_mask = 18
-can_sleep = false
-freeze = true
-freeze_mode = 1
-contact_monitor = true
-max_contacts_reported = 1
 script = ExtResource("1_dkv7l")
 metadata/_custom_type_script = "uid://btew01wuq5pv3"
-
-[node name="Rocket2" parent="." unique_id=954374764 instance=ExtResource("1_3341w")]
-transform = Transform3D(2, 0, 0, 0, -2, 3.019916e-07, 0, -3.019916e-07, -2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=599974920]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.2)
 shape = SubResource("CapsuleShape3D_dkv7l")
+
+[node name="Rocket2" parent="." unique_id=954374764 instance=ExtResource("1_3341w")]
+transform = Transform3D(2, 0, 0, 0, -2, 3.019916e-07, 0, -3.019916e-07, -2, 0, 0, 0)
 
 [connection signal="body_entered" from="." to="." method="destroy"]

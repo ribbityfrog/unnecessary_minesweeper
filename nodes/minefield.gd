@@ -1,10 +1,12 @@
 class_name Minefield
 extends Node3D
 
-@export var width: int = 10
-@export var height: int = 10
-@export var gap_x: float = 0.2
-@export var gap_y: float = 0.2
+@export var mine_scene: PackedScene
+
+@export var width := 20
+@export var height := 10
+@export var gap_x := 1.0
+@export var gap_y := 1.0
 
 @export var player: Node3D
 
@@ -12,6 +14,8 @@ var rng = RandomNumberGenerator.new()
 var field: Array[Mine]
 
 func _ready() -> void:
+	if (mine_scene == null):
+		mine_scene = preload("res://scenes/mine.tscn")
 	create_minefield()
 
 # func _process(delta: float) -> void:
@@ -19,11 +23,10 @@ func _ready() -> void:
 
 func create_minefield() -> void:
 	field = []
-	var mineScene = preload("res://scenes/mine.tscn")
 
 	for x in range(width):
 		for y in range(height):
-			var mine: Mine = mineScene.instantiate()
+			var mine: Mine = mine_scene.instantiate()
 			mine.placed_position = Vector3((x * (1 + gap_x)) - (width * (1 + gap_x)) / 2, y * (1 + gap_y), 0)
 			field.push_back(mine)
 			add_child(mine)

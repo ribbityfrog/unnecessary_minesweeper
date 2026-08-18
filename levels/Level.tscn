@@ -20,12 +20,9 @@ size = Vector3(30, 1, 10)
 
 [node name="Node3D" type="Node3D" unique_id=1488013494]
 
-[node name="Minefield" type="Node3D" parent="." unique_id=1375420170 node_paths=PackedStringArray("player")]
+[node name="Minefield" type="Node3D" parent="." unique_id=751882303]
 script = ExtResource("1_xubwl")
-width = 20
-gap_x = 1.0
-gap_y = 1.0
-player = NodePath("../Player")
+metadata/_custom_type_script = "uid://8a8eohjtbwq4"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1702823666]
 transform = Transform3D(0.92153895, 1.4901161e-08, -0.3882859, 0.18090776, 0.8848302, 0.42935774, 0.34356704, -0.46591383, 0.81540537, -7.1468544, 9.799591, 20.861975)
@@ -38,12 +35,9 @@ speed_rotation = 0.1
 [node name="Platform" type="Node3D" parent="." unique_id=1865670729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
-[node name="Floor" type="RigidBody3D" parent="Platform" unique_id=2022080616]
-disable_mode = 2
+[node name="Floor" type="StaticBody3D" parent="Platform" unique_id=1066767067]
 collision_layer = 2
 collision_mask = 9
-freeze = true
-max_contacts_reported = 1
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Platform/Floor" unique_id=817524504]
 size = Vector3(30, 1, 10)
@@ -51,42 +45,36 @@ size = Vector3(30, 1, 10)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Floor" unique_id=1850230565]
 shape = SubResource("BoxShape3D_dfktb")
 
-[node name="Wall" type="RigidBody3D" parent="Platform" unique_id=117533264]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, 5)
-collision_layer = 4
-freeze = true
+[node name="Wall1" type="StaticBody3D" parent="Platform" unique_id=1138895824]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, -15)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Wall" unique_id=227638626]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Wall1" unique_id=227638626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -9.536743e-07)
 shape = SubResource("BoxShape3D_42lo8")
 
-[node name="Wall2" type="RigidBody3D" parent="Platform" unique_id=728313761]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, -5)
-collision_layer = 4
-freeze = true
+[node name="Wall2" type="StaticBody3D" parent="Platform" unique_id=519640919]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, -25)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Wall2" unique_id=186017946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -9.536743e-07)
 shape = SubResource("BoxShape3D_42lo8")
 
-[node name="Wall3" type="RigidBody3D" parent="Platform" unique_id=136870780]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 15, 2.5, 0)
-collision_layer = 4
-freeze = true
+[node name="Wall3" type="StaticBody3D" parent="Platform" unique_id=640970349]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 15, 2.5, -20)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Wall3" unique_id=955123466]
+transform = Transform3D(1, 0, 0, 0, 1, -8.351872e-23, 0, -8.351872e-23, 1, -20, -9.536743e-07, 0)
 shape = SubResource("BoxShape3D_0ydld")
 
-[node name="Wall4" type="RigidBody3D" parent="Platform" unique_id=181600488]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -15, 2.5, 0)
-collision_layer = 4
-freeze = true
+[node name="Wall4" type="StaticBody3D" parent="Platform" unique_id=1894643816]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -15, 2.5, -20)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Wall4" unique_id=977155491]
+transform = Transform3D(1, 0, 0, 0, 1, -8.351872e-23, 0, -8.351872e-23, 1, -20, -9.536743e-07, 0)
 shape = SubResource("BoxShape3D_rlxyy")
 
-[node name="Roof" type="RigidBody3D" parent="Platform" unique_id=855400518]
+[node name="Roof" type="StaticBody3D" parent="Platform" unique_id=587464435]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)
-collision_layer = 4
-freeze = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Roof" unique_id=294658931]
 shape = SubResource("BoxShape3D_n5p7m")

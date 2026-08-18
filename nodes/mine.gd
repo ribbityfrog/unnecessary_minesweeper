@@ -1,5 +1,5 @@
 class_name Mine
-extends RigidBody3D
+extends AnimatableBody3D
 
 var placed_position: Vector3 = Vector3.ZERO
 
