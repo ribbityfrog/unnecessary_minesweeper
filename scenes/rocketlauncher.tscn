@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://btm7ymk2lufwt"]
+
+[ext_resource type="Script" uid="uid://bjvn3giucygx" path="res://nodes/weapons/rocketlauncher/rocketlauncher.gd" id="1_j4dxh"]
+[ext_resource type="PackedScene" uid="uid://dtshn4bfb0aw7" path="res://nodes/weapons/rocketlauncher/assets/rocketlauncher.glb" id="2_a8v4x"]
+[ext_resource type="PackedScene" uid="uid://bwmn0b1eu88vd" path="res://scenes/rocket.tscn" id="2_aiuxn"]
+[ext_resource type="Script" uid="uid://bqng0uws4ax5n" path="res://nodes/kickback.gd" id="3_aiuxn"]
+
+[node name="RocketLauncher" type="Node3D" unique_id=126484284 node_paths=PackedStringArray("tip")]
+script = ExtResource("1_j4dxh")
+rocket = ExtResource("2_aiuxn")
+tip = NodePath("Tip")
+metadata/_custom_type_script = "uid://bjvn3giucygx"
+
+[node name="Sketchfab_Scene" parent="." unique_id=413225034 instance=ExtResource("2_a8v4x")]
+transform = Transform3D(-0.011509819, 0, 0.16459808, 0, 0.165, 0, -0.16459808, 0, -0.011509819, 0.021897303, 0.072, -0.30178264)
+
+[node name="Kickback" type="Node" parent="." unique_id=1698200153]
+script = ExtResource("3_aiuxn")
+kb_position = Vector3(-0.2, 0, 0.1)
+kb_rotation = Vector3(12, 0, 10)
+kick_speed = 0.4
+back_speed = 0.8
+metadata/_custom_type_script = "uid://bqng0uws4ax5n"
+
+[node name="Tip" type="Node3D" parent="." unique_id=1464842014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06007558, 0.051543474, -1.4738953)
+
+[connection signal="shot" from="." to="Kickback" method="kickback"]
