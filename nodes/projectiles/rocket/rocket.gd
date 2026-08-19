@@ -5,10 +5,11 @@ extends Area3D
 @export var launch_duration := 0.4
 @export var speed := 20.0
 
-var is_launched: bool = false
-# var is_force_applied: bool = false
-
+var damages: Damages
 var origin: Node3D
+
+var is_launched: bool = false
+
 
 func _ready() -> void:
 	if (origin == null):

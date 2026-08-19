@@ -14,6 +14,13 @@ extends CharacterBody3D
 @export var jump_force := 5.0
 @export var jump_min_ratio := 0.35
 
+@export_group("Vision")
+@export var fov := 75
+@export var zoom_fov := 50
+@export var zoom_speed := 0.2
+@export var zoom_ease := Tween.EASE_IN_OUT
+@export var zoom_trans := Tween.TRANS_SINE
+
 var mouse_relative := Vector2.ZERO
 
 var is_jumping := false
@@ -23,7 +30,6 @@ func _ready() -> void:
 
 	if (camera == null):
 		camera = %PlayerCamera
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -35,6 +41,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta_time: float) -> void:
 	velocity = Vector3(velocity.x * friction, velocity.y, velocity.z * friction)
+
+	if (Input.is_action_just_pressed('zoom')):
+		var tween := create_tween().set_ease(zoom_ease).set_trans(zoom_trans)
+		tween.tween_property(camera, "fov", zoom_fov, zoom_speed)
+	if (Input.is_action_just_released('zoom')):
+		var tween := create_tween().set_ease(zoom_ease).set_trans(zoom_trans)
+		tween.tween_property(camera, "fov", fov, zoom_speed)
 
 	if (not is_on_floor()):
 		velocity.y += gravity * delta_time

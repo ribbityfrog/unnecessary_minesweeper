@@ -3,13 +3,23 @@
 [ext_resource type="Script" uid="uid://bjvn3giucygx" path="res://nodes/weapons/rocketlauncher/rocketlauncher.gd" id="1_j4dxh"]
 [ext_resource type="PackedScene" uid="uid://dtshn4bfb0aw7" path="res://nodes/weapons/rocketlauncher/assets/rocketlauncher.glb" id="2_a8v4x"]
 [ext_resource type="PackedScene" uid="uid://bwmn0b1eu88vd" path="res://scenes/rocket.tscn" id="2_aiuxn"]
-[ext_resource type="Script" uid="uid://bqng0uws4ax5n" path="res://nodes/kickback.gd" id="3_aiuxn"]
+[ext_resource type="Script" uid="uid://bqng0uws4ax5n" path="res://nodes/behaviours/kickback.gd" id="3_aiuxn"]
+[ext_resource type="Script" uid="uid://8adx7sl8jifq" path="res://resources/damages.gd" id="3_qevvl"]
 [ext_resource type="Texture2D" uid="uid://8wxgrtapfas2" path="res://nodes/weapons/rocketlauncher/assets/crosshair.png" id="5_aiuxn"]
+
+[sub_resource type="Resource" id="Resource_aiuxn"]
+script = ExtResource("3_qevvl")
+impact = 10
+explodes = 40
+explodes_decay = 20
+explodes_spread = 1
+metadata/_custom_type_script = "uid://8adx7sl8jifq"
 
 [node name="RocketLauncher" type="Node3D" unique_id=126484284 node_paths=PackedStringArray("tip")]
 script = ExtResource("1_j4dxh")
 rocket = ExtResource("2_aiuxn")
 tip = NodePath("Tip")
+damages = SubResource("Resource_aiuxn")
 metadata/_custom_type_script = "uid://bjvn3giucygx"
 
 [node name="Sketchfab_Scene" parent="." unique_id=413225034 instance=ExtResource("2_a8v4x")]

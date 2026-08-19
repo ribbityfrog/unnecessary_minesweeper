@@ -21,4 +21,5 @@ shape = SubResource("CapsuleShape3D_dkv7l")
 [node name="Rocket2" parent="." unique_id=954374764 instance=ExtResource("1_3341w")]
 transform = Transform3D(2, 0, 0, 0, -2, 3.019916e-07, 0, -3.019916e-07, -2, 0, 0, 0)
 
+[connection signal="area_entered" from="." to="." method="destroy"]
 [connection signal="body_entered" from="." to="." method="destroy"]

@@ -5,12 +5,17 @@ extends Node3D
 
 signal shot
 
+@export var damages: Damages
+@export var cooldown := 1.5
+
+var can_shoot: bool = true
+
 # func _ready() -> void:
 # 	if (camera == null):
 # 		camera = %PlayerCamera
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if (Input.is_action_just_pressed('shoot')):
+	if (can_shoot and Input.is_action_just_pressed('shoot')):
 		_shoot()
 
 # func _physics_process(_delta: float) -> void:
@@ -22,4 +27,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 # 	var result := space_state.intersect_ray(cast)
 
 func _shoot() -> void:
+	can_shoot = false
 	emit_signal('shot')
+	await get_tree().create_timer(cooldown).timeout
+	can_shoot = true
