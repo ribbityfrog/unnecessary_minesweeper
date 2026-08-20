@@ -3,10 +3,15 @@ extends Node3D
 
 @export var mine_scene: PackedScene
 
+@export_group("Board")
 @export var width := 20
 @export var height := 10
 @export var gap_x := 1.0
 @export var gap_y := 1.0
+
+@export_group("Mines")
+@export var mines := 30
+@export var mines_around_max := 5
 
 @export var player: Node3D
 
@@ -25,17 +30,33 @@ func _ready() -> void:
 
 func create_minefield() -> void:
 	field = []
+	var field_tmp: Array[Mine] = []
 
 	for x in range(width):
 		for y in range(height):
 			var mine: Mine = mine_scene.instantiate()
-			connect("minefield_created", mine.mine_ready)
-			mine.connect("died", Callable(self, "destroy_mine"))
+			mine.minefield = self
+			# connect("minefield_created", mine.mine_ready)
 			mine.placed_position = Vector3((x * (1 + gap_x)) - (width * (1 + gap_x)) / 2, y * (1 + gap_y), 0)
 			mine.x = x
 			mine.y = y
 			field.push_back(mine)
+			field_tmp.push_back(mine)
 			add_child(mine)
+
+	for mine in field:
+		mine.link_mines()
+
+	for i in range(mines):
+		while true:
+			var index := rng.randi_range(0, field_tmp.size() - 1)
+			var mine := field_tmp[index]
+			if (mine.mines_around_recount() > mines_around_max):
+				field_tmp.remove_at(index)
+				continue
+			mine.has_mine = true
+			field_tmp.remove_at(index)
+			break
 
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -50,8 +71,16 @@ func create_minefield() -> void:
 		tween.tween_property(mine, "position", mine.placed_position, 2)
 		tween.tween_property(mine, "rotation_degrees", Vector3(0, 0, 0), 2)
 
-	tween.chain()
-	tween.tween_callback(func(): emit_signal("minefield_created"))
+	tween.tween_callback(
+		func():
+			var i := 0
+			for mine in field:
+				i += 1
+				if (i % 10 == 0):
+					await get_tree().process_frame
+				mine.mine_ready()
+			emit_signal("minefield_created")
+	)
 
 func get_mine(x: int, y: int) -> Mine:
 	var index := x * height + y
@@ -60,9 +89,3 @@ func get_mine(x: int, y: int) -> Mine:
 		return null
 
 	return field[index]
-
-func destroy_mine(x: int, y: int) -> void:
-	var mine := get_mine(x, y)
-	if (mine != null):
-		mine.destroy()
-		mine = null

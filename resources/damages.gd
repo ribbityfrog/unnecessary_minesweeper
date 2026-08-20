@@ -23,17 +23,17 @@ func target_died() -> void:
     burns = 0
     burns_spread = 0
 
-func decay() -> void:
-    impact = 0
+# func decay() -> void:
+#     impact = 0
 
-    if (burns > 0 && burns_spread > 0):
-        burns -= burns_decay
-        burns_spread -= 1
-        if (burns < 0):
-            burns = 0
+#     if (burns > 0 && burns_spread > 0):
+#         burns -= burns_decay
+#         burns_spread -= 1
+#         if (burns < 0):
+#             burns = 0
 
-    if (explodes > 0 && explodes_spread > 0):
-        explodes -= explodes_decay
-        explodes_spread -= 1
-        if (explodes < 0):
-            explodes = 0
+#     if (explodes > 0 && explodes_spread > 0):
+#         explodes -= explodes_decay
+#         explodes_spread -= 1
+#         if (explodes < 0):
+#             explodes = 0

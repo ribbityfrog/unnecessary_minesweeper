@@ -2,22 +2,32 @@
 
 [ext_resource type="Script" uid="uid://ckq7y07amh3er" path="res://nodes/mine.gd" id="1_kqr42"]
 [ext_resource type="Script" uid="uid://gl2b4woyndun" path="res://nodes/behaviours/health.gd" id="2_yym1a"]
-[ext_resource type="Script" uid="uid://dsvmudqjs24w1" path="res://nodes/label.gd" id="3_m55k0"]
+[ext_resource type="Script" uid="uid://dsvmudqjs24w1" path="res://nodes/health_label.gd" id="3_m55k0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m55k0"]
+albedo_color = Color(0.61127055, 0.97295517, 0.7785218, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dfktb"]
 
-[node name="Mine" type="Area3D" unique_id=662490953]
+[node name="Mine" type="Area3D" unique_id=662490953 node_paths=PackedStringArray("health", "health_label", "geometry", "mines_count_label")]
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("1_kqr42")
+health = NodePath("Health")
+health_label = NodePath("HealthLabel")
+geometry = NodePath("Geometry")
+mines_count_label = NodePath("MinesCount")
 metadata/_custom_type_script = "uid://ckq7y07amh3er"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2083849598]
+[node name="Geometry" type="CSGBox3D" parent="." unique_id=2083849598]
+unique_name_in_owner = true
+material = SubResource("StandardMaterial3D_m55k0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=524407565]
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=524407565]
 shape = SubResource("BoxShape3D_dfktb")
 
 [node name="HealthLabel" type="Label3D" parent="." unique_id=2090302408]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175, -0.312, 0.55)
 font_size = 64
 script = ExtResource("3_m55k0")
@@ -27,6 +37,10 @@ metadata/_custom_type_script = "uid://dsvmudqjs24w1"
 unique_name_in_owner = true
 script = ExtResource("2_yym1a")
 metadata/_custom_type_script = "uid://gl2b4woyndun"
+
+[node name="MinesCount" type="Label3D" parent="." unique_id=2085253980]
+unique_name_in_owner = true
+font_size = 160
 
 [connection signal="area_entered" from="." to="." method="hit"]
 [connection signal="updated" from="Health" to="HealthLabel" method="edit_text"]
