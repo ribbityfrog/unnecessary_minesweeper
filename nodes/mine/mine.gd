@@ -1,10 +1,17 @@
 class_name Mine
 extends Area3D
 
+
+@export_group("Children")
 @export var health: Health
 @export var health_label: HealthLabel
-@export var geometry: CSGBox3D
 @export var mines_count_label: Label3D
+@export var geometry: CSGBox3D
+@export var collision: CollisionShape3D
+
+@export_group("Materials")
+@export var material_default: StandardMaterial3D
+@export var material_debug: StandardMaterial3D
 
 var placed_position: Vector3 = Vector3.ZERO
 
@@ -39,10 +46,11 @@ func _ready() -> void:
 
 func mine_ready() -> void:
 	health_label.edit_text(health.health)
-	mines_around_recount(true)
-	geometry.material = geometry.material.duplicate()
 	if (has_mine):
-		geometry.material.albedo_color = Color.ORANGE_RED
+		geometry.material = material_debug
+		mines_count_label.queue_free()
+	else:
+		mines_around_recount(true)
 
 
 func link_mines() -> void:
@@ -75,12 +83,23 @@ func hit(area: Area3D) -> void:
 
 
 func apply_damages(damages: Damages) -> void:
+	if (is_destroyed):
+		return
+
 	health.lose_health(damages.total())
 
+	if (damages.is_explodes_spreadable()):
+		minefield.propagate_explosion(x, y, damages.explodes, damages.explodes_decay, damages.explodes_spread)
+
 	if (health.is_dead):
-		damages.target_died()
 		destroy()
 
+
+func apply_explosion_damages(damages: int):
+	health.lose_health(damages)
+
+	if (health.is_dead):
+		destroy()
 
 func destroy(delayed: float = 0.0) -> void:
 	if (is_destroyed):
@@ -95,5 +114,6 @@ func destroy(delayed: float = 0.0) -> void:
 			if (mine != null && not mine.is_destroyed):
 				mine.destroy(0.15)
 
+	collision.disabled = true
 	geometry.queue_free()
 	health_label.queue_free()

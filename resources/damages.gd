@@ -17,11 +17,17 @@ func total() -> int:
     return impact + burns + explodes
 
 func is_spreadable() -> bool:
-    return (burns_spread > 0 and burns > 0) or (explodes_spread > 0 and explodes > 0)
+    return (is_explodes_spreadable() or is_burns_spreadable())
 
-func target_died() -> void:
-    burns = 0
-    burns_spread = 0
+func is_explodes_spreadable() -> bool:
+    return (explodes_spread > 0 and explodes > 0 and explodes_decay < explodes)
+
+func is_burns_spreadable() -> bool:
+    return (burns_spread > 0 and burns > 0 and burns_decay < burns)
+
+# func target_died() -> void:
+#     burns = 0
+#     burns_spread = 0
 
 # func decay() -> void:
 #     impact = 0

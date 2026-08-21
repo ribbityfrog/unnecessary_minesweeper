@@ -18,15 +18,14 @@ extends Node3D
 var rng = RandomNumberGenerator.new()
 var field: Array[Mine]
 
-signal minefield_created
+signal minefield_ready
+
 
 func _ready() -> void:
 	if (mine_scene == null):
 		mine_scene = preload("res://scenes/mine.tscn")
 	create_minefield()
 
-# func _process(delta: float) -> void:
-# 	pass
 
 func create_minefield() -> void:
 	field = []
@@ -79,8 +78,9 @@ func create_minefield() -> void:
 				if (i % 10 == 0):
 					await get_tree().process_frame
 				mine.mine_ready()
-			emit_signal("minefield_created")
+			emit_signal("minefield_ready")
 	)
+
 
 func get_mine(x: int, y: int) -> Mine:
 	var index := x * height + y
@@ -89,3 +89,19 @@ func get_mine(x: int, y: int) -> Mine:
 		return null
 
 	return field[index]
+
+
+func propagate_explosion(x: int, y: int, damages: int, decay: int, spread: int) -> void:
+	for i in range(1, spread + 1):
+		damages -= decay
+		if (damages <= 0):
+			break
+		
+		for dx in [-i, 0, i]:
+			for dy in [-i, 0, i]:
+				if (dx == 0 and dy == 0):
+					continue
+
+				var mine := get_mine(x + dx, y + dy)
+				if (mine != null and not mine.is_destroyed):
+					mine.apply_explosion_damages(damages)

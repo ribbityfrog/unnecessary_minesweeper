@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dlw76f75ukjit"]
 
-[ext_resource type="Script" uid="uid://ckq7y07amh3er" path="res://nodes/mine.gd" id="1_kqr42"]
+[ext_resource type="Script" uid="uid://ckq7y07amh3er" path="res://nodes/mine/mine.gd" id="1_kqr42"]
+[ext_resource type="Material" uid="uid://yn0217xxqorm" path="res://nodes/mine/assets/mine.tres" id="2_361d0"]
 [ext_resource type="Script" uid="uid://gl2b4woyndun" path="res://nodes/behaviours/health.gd" id="2_yym1a"]
+[ext_resource type="Material" uid="uid://b2uutfegfkfao" path="res://nodes/mine/assets/mine_debug.tres" id="3_kxfpg"]
 [ext_resource type="Script" uid="uid://dsvmudqjs24w1" path="res://nodes/health_label.gd" id="3_m55k0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m55k0"]
@@ -9,14 +11,17 @@ albedo_color = Color(0.61127055, 0.97295517, 0.7785218, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dfktb"]
 
-[node name="Mine" type="Area3D" unique_id=662490953 node_paths=PackedStringArray("health", "health_label", "geometry", "mines_count_label")]
+[node name="Mine" type="Area3D" unique_id=662490953 node_paths=PackedStringArray("health", "health_label", "mines_count_label", "geometry", "collision")]
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("1_kqr42")
 health = NodePath("Health")
 health_label = NodePath("HealthLabel")
-geometry = NodePath("Geometry")
 mines_count_label = NodePath("MinesCount")
+geometry = NodePath("Geometry")
+collision = NodePath("Collision")
+material_default = ExtResource("2_361d0")
+material_debug = ExtResource("3_kxfpg")
 metadata/_custom_type_script = "uid://ckq7y07amh3er"
 
 [node name="Geometry" type="CSGBox3D" parent="." unique_id=2083849598]
@@ -24,6 +29,7 @@ unique_name_in_owner = true
 material = SubResource("StandardMaterial3D_m55k0")
 
 [node name="Collision" type="CollisionShape3D" parent="." unique_id=524407565]
+unique_name_in_owner = true
 shape = SubResource("BoxShape3D_dfktb")
 
 [node name="HealthLabel" type="Label3D" parent="." unique_id=2090302408]
