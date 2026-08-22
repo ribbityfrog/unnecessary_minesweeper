@@ -18,7 +18,7 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_n5p7m"]
 size = Vector3(30, 1, 10)
 
-[node name="Node3D" type="Node3D" unique_id=1488013494]
+[node name="game" type="Node3D" unique_id=1488013494]
 
 [node name="Minefield" type="Node3D" parent="." unique_id=751882303]
 script = ExtResource("1_xubwl")
@@ -37,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
 [node name="Floor" type="StaticBody3D" parent="Platform" unique_id=1066767067]
 collision_layer = 2
-collision_mask = 9
+collision_mask = 137
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Platform/Floor" unique_id=817524504]
 size = Vector3(30, 1, 10)

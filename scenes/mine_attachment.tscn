@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cntis6ukdx8x0"]
+
+[ext_resource type="PackedScene" uid="uid://boqyd55fkvdjt" path="res://nodes/mine_attachment/forge_disc.glb" id="1_jmj8n"]
+
+[node name="MineAttached" type="Node3D" unique_id=705686033]
+
+[node name="Sketchfab_Scene" parent="." unique_id=1009713071 instance=ExtResource("1_jmj8n")]
+transform = Transform3D(7.642742e-17, -1.7484555e-09, -0.04, -0.04, -1.7484555e-09, 0, -1.7484555e-09, 0.04, -1.7484555e-09, 0, 0, 0)
