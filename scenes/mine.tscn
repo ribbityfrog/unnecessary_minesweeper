@@ -9,8 +9,8 @@
 radius = 0.3
 
 [node name="Mine" type="Area3D" unique_id=1973530854 node_paths=PackedStringArray("bezier")]
-collision_layer = 0
-collision_mask = 130
+collision_layer = 128
+collision_mask = 0
 script = ExtResource("1_i6hay")
 bezier = NodePath("BezierCurve")
 attachment_scene = ExtResource("2_j4qwv")

@@ -8,7 +8,6 @@ radius = 0.09
 height = 0.4
 
 [node name="Rocket" type="Area3D" unique_id=929283777]
-disable_mode = 2
 collision_layer = 8
 collision_mask = 18
 script = ExtResource("1_dkv7l")

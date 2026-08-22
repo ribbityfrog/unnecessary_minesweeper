@@ -73,7 +73,16 @@ func mines_around_recount(finalized: bool = false) -> int:
 	mines_around_count = count
 
 	if (finalized):
-		mines_count_label.text = str(count) if count > 0 else ""
+		if (count <= 0):
+			mines_count_label.text = ""
+		else:
+			mines_count_label.text = str(count)
+			match count:
+				1: mines_count_label.modulate = Color.hex(0xa6f2fdff)
+				2: mines_count_label.modulate = Color.hex(0xb6f5c6ff)
+				3: mines_count_label.modulate = Color.hex(0xffacb2ff)
+				4: mines_count_label.modulate = Color.hex(0xf59bf2ff)
+				5: mines_count_label.modulate = Color.hex(0xf1af93ff)
 
 	return count
 

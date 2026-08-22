@@ -63,6 +63,15 @@ zoom={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Players"
+3d_physics/layer_2="Floor"
+3d_physics/layer_3="Barriers"
+3d_physics/layer_4="Projectiles"
+3d_physics/layer_5="Bricks"
+3d_physics/layer_8="Mines"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

@@ -12,7 +12,7 @@ albedo_color = Color(0.61127055, 0.97295517, 0.7785218, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dfktb"]
 
-[node name="Brick" type="Area3D" unique_id=662490953 node_paths=PackedStringArray("health", "health_label", "mines_count_label", "geometry", "collision")]
+[node name="Brick" type="Area3D" unique_id=174176284 node_paths=PackedStringArray("health", "health_label", "mines_count_label", "geometry", "collision")]
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("1_ci8dj")
@@ -24,6 +24,7 @@ geometry = NodePath("Geometry")
 collision = NodePath("Collision")
 material_default = ExtResource("2_x7yom")
 material_debug = ExtResource("3_d02mp")
+metadata/_custom_type_script = "uid://ckq7y07amh3er"
 
 [node name="Geometry" type="CSGBox3D" parent="." unique_id=2083849598]
 unique_name_in_owner = true
@@ -37,7 +38,9 @@ shape = SubResource("BoxShape3D_dfktb")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175, -0.312, 0.55)
 font_size = 64
+outline_size = 24
 script = ExtResource("4_tj0p1")
+font_size_bigger = 128
 metadata/_custom_type_script = "uid://dsvmudqjs24w1"
 
 [node name="Health" type="Node" parent="." unique_id=1169306483]
@@ -48,6 +51,9 @@ metadata/_custom_type_script = "uid://gl2b4woyndun"
 [node name="MinesCount" type="Label3D" parent="." unique_id=2085253980]
 unique_name_in_owner = true
 font_size = 160
+outline_size = 32
 
 [connection signal="area_entered" from="." to="." method="hit"]
+[connection signal="mouse_entered" from="." to="HealthLabel" method="size_bigger"]
+[connection signal="mouse_exited" from="." to="HealthLabel" method="size_default"]
 [connection signal="updated" from="Health" to="HealthLabel" method="edit_text"]
