@@ -78,7 +78,7 @@ func mines_around_recount(finalized: bool = false) -> int:
 
 
 func hit(area: Area3D) -> void:
-	if (area.damages is Damages):
+	if ("damages" in area and area.damages is Damages):
 		apply_damages(area.damages)
 
 
