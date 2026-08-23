@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bwmn0b1eu88vd" path="res://scenes/rocket.tscn" id="2_aiuxn"]
 [ext_resource type="Script" uid="uid://bqng0uws4ax5n" path="res://nodes/behaviours/kickback.gd" id="3_aiuxn"]
 [ext_resource type="Script" uid="uid://8adx7sl8jifq" path="res://resources/damages.gd" id="3_qevvl"]
-[ext_resource type="Texture2D" uid="uid://8wxgrtapfas2" path="res://nodes/weapons/rocketlauncher/assets/crosshair.png" id="5_aiuxn"]
 
 [sub_resource type="Resource" id="Resource_aiuxn"]
 script = ExtResource("3_qevvl")
@@ -15,10 +14,13 @@ explodes_decay = 20
 explodes_spread = 1
 metadata/_custom_type_script = "uid://8adx7sl8jifq"
 
-[node name="RocketLauncher" type="Node3D" unique_id=126484284 node_paths=PackedStringArray("tip")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aiuxn"]
+load_path = "res://.godot/imported/crosshair.png-ee2ee6f0decaa692bbcecfb8acdee3cb.ctex"
+
+[node name="RocketLauncher" type="Node3D" unique_id=126484284 node_paths=PackedStringArray("nozzle")]
 script = ExtResource("1_j4dxh")
 rocket = ExtResource("2_aiuxn")
-tip = NodePath("Tip")
+nozzle = NodePath("Nozzle")
 damages = SubResource("Resource_aiuxn")
 metadata/_custom_type_script = "uid://bjvn3giucygx"
 
@@ -33,10 +35,10 @@ kick_speed = 0.4
 back_speed = 0.8
 metadata/_custom_type_script = "uid://bqng0uws4ax5n"
 
-[node name="Tip" type="Node3D" parent="." unique_id=1464842014]
+[node name="Nozzle" type="Node3D" parent="." unique_id=1464842014]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06007558, 0.051543474, -1.4738953)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1270800753]
+[node name="Crosshair" type="TextureRect" parent="." unique_id=1270800753]
 modulate = Color(1, 1, 1, 0.7058824)
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,6 +51,6 @@ offset_right = 37.0
 offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_aiuxn")
+texture = SubResource("CompressedTexture2D_aiuxn")
 
 [connection signal="shot" from="." to="Kickback" method="kickback"]

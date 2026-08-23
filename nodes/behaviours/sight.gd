@@ -1,5 +1,5 @@
-class_name Crosshair
-extends TextureRect
+class_name Sight
+extends Node
 
 @export var camera: Camera3D
 @export var distance_max := 100.0
@@ -8,11 +8,13 @@ var current_collision: CollisionObject3D
 
 var world: World3D
 
+
 func _ready() -> void:
 	if (camera == null):
 		return
 
 	world = camera.get_world_3d()
+
 
 func _physics_process(_delta: float) -> void:
 	if (camera == null):
