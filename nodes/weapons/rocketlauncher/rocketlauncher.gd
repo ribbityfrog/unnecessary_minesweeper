@@ -5,9 +5,7 @@ extends AWeapon
 @export var rocket: PackedScene
 
 func _shoot() -> void:
-	print("RocketLauncher: _shoot()")
 	var rocket_instance: Rocket = rocket.instantiate()
-	print("RocketLauncher: rocket_instance: ", rocket_instance)
 	rocket_instance.damages = damages.duplicate()
 	rocket_instance.global_transform = nozzle.global_transform
 	rocket_instance.rotation = global_rotation
