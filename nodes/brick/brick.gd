@@ -3,6 +3,8 @@ extends Area3D
 
 @export var mine_scene: PackedScene
 
+@export var damages: Damages
+
 @export_group("Children")
 @export var health: Health
 @export var health_label: HealthLabel
@@ -92,21 +94,21 @@ func hit(area: Area3D) -> void:
 		apply_damages(area.damages)
 
 
-func apply_damages(damages: Damages) -> void:
+func apply_damages(dam: Damages) -> void:
 	if (is_destroyed):
 		return
 
-	health.lose_health(damages.total())
+	health.lose_health(dam.total())
 
-	if (damages.is_explodes_spreadable()):
-		minefield.propagate_explosion(x, y, damages.explodes, damages.explodes_decay, damages.explodes_spread)
+	if (dam.is_explodes_spreadable()):
+		minefield.propagate_explosion(x, y, dam.explodes, dam.explodes_decay, dam.explodes_spread)
 
 	if (health.is_dead):
 		destroy()
 
 
-func apply_explosion_damages(damages: int):
-	health.lose_health(damages)
+func apply_explosion_damages(dam: int):
+	health.lose_health(dam)
 
 	if (health.is_dead):
 		destroy()

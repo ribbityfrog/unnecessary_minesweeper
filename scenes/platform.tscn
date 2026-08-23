@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://w5m07fllymdy"]
+
+[ext_resource type="Script" uid="uid://drowgd02mj7gq" path="res://nodes/floor.gd" id="1_ba0x2"]
+[ext_resource type="Script" uid="uid://8adx7sl8jifq" path="res://resources/damages.gd" id="2_507ja"]
+[ext_resource type="Script" uid="uid://gl2b4woyndun" path="res://nodes/behaviours/health.gd" id="2_nlgqw"]
+
+[sub_resource type="Resource" id="Resource_507ja"]
+script = ExtResource("2_507ja")
+impact = 1000
+metadata/_custom_type_script = "uid://8adx7sl8jifq"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dfktb"]
+size = Vector3(30, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_42lo8"]
+size = Vector3(30, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ydld"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rlxyy"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n5p7m"]
+size = Vector3(30, 1, 10)
+
+[node name="Platform" type="Node3D" unique_id=254511500]
+
+[node name="Floor" type="Area3D" parent="." unique_id=58141658 node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 136
+script = ExtResource("1_ba0x2")
+health = NodePath("Health")
+damages = SubResource("Resource_507ja")
+metadata/_custom_type_script = "uid://drowgd02mj7gq"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor" unique_id=244274169]
+size = Vector3(30, 1, 10)
+
+[node name="Collision" type="CollisionShape3D" parent="Floor" unique_id=1103424663]
+shape = SubResource("BoxShape3D_dfktb")
+
+[node name="Body" type="StaticBody3D" parent="Floor" unique_id=1940591715]
+collision_layer = 4
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="Collision" type="CollisionShape3D" parent="Floor/Body" unique_id=1996852642]
+shape = SubResource("BoxShape3D_dfktb")
+
+[node name="Health" type="Node" parent="Floor" unique_id=1680656321]
+script = ExtResource("2_nlgqw")
+metadata/_custom_type_script = "uid://gl2b4woyndun"
+
+[node name="Wall1" type="StaticBody3D" parent="." unique_id=1473878621]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, -15)
+collision_layer = 4
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall1" unique_id=198962631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -9.536743e-07)
+shape = SubResource("BoxShape3D_42lo8")
+
+[node name="Wall2" type="StaticBody3D" parent="." unique_id=1590253212]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.5, -25)
+collision_layer = 4
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=2127960604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -9.536743e-07)
+shape = SubResource("BoxShape3D_42lo8")
+
+[node name="Wall3" type="StaticBody3D" parent="." unique_id=892631152]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 15, 2.5, -20)
+collision_layer = 4
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3" unique_id=1171609303]
+transform = Transform3D(1, 0, 0, 0, 1, -8.351872e-23, 0, -8.351872e-23, 1, -20, -9.536743e-07, 0)
+shape = SubResource("BoxShape3D_0ydld")
+
+[node name="Wall4" type="StaticBody3D" parent="." unique_id=1303316125]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -15, 2.5, -20)
+collision_layer = 4
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4" unique_id=1928810876]
+transform = Transform3D(1, 0, 0, 0, 1, -8.351872e-23, 0, -8.351872e-23, 1, -20, -9.536743e-07, 0)
+shape = SubResource("BoxShape3D_rlxyy")
+
+[node name="Roof" type="StaticBody3D" parent="." unique_id=1662547151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)
+collision_layer = 4
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roof" unique_id=99672289]
+shape = SubResource("BoxShape3D_n5p7m")

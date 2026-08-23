@@ -1,6 +1,8 @@
 class_name Rocket
 extends Area3D
 
+@export var health: Health
+
 @export var launch_offset := 2.0
 @export var launch_duration := 0.4
 @export var speed := 20.0
@@ -28,9 +30,18 @@ func _ready() -> void:
 			destroy()
 	)
 
+
 func _physics_process(delta: float) -> void:
 	if (is_launched):
 		translate(Vector3.FORWARD * speed * delta)
 
-func destroy(_body: Node = null) -> void:
+
+func hit(area: Area3D) -> void:
+	if ("damages" in area and area.damages is Damages):
+		health.lose_health(area.damages.total())
+		if (health.is_dead):
+			destroy()
+
+
+func destroy() -> void:
 	queue_free()

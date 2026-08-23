@@ -2,15 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://bcidqu34odh7e" path="res://nodes/projectiles/rocket/assets/Rocket2.glb" id="1_3341w"]
 [ext_resource type="Script" uid="uid://btew01wuq5pv3" path="res://nodes/projectiles/rocket/rocket.gd" id="1_dkv7l"]
+[ext_resource type="Script" uid="uid://gl2b4woyndun" path="res://nodes/behaviours/health.gd" id="3_agf72"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dkv7l"]
 radius = 0.09
 height = 0.4
 
-[node name="Rocket" type="Area3D" unique_id=929283777]
+[node name="Rocket" type="Area3D" unique_id=929283777 node_paths=PackedStringArray("health")]
 collision_layer = 8
 collision_mask = 18
 script = ExtResource("1_dkv7l")
+health = NodePath("Health")
 metadata/_custom_type_script = "uid://btew01wuq5pv3"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=599974920]
@@ -20,5 +22,11 @@ shape = SubResource("CapsuleShape3D_dkv7l")
 [node name="Rocket2" parent="." unique_id=954374764 instance=ExtResource("1_3341w")]
 transform = Transform3D(2, 0, 0, 0, -2, 3.019916e-07, 0, -3.019916e-07, -2, 0, 0, 0)
 
-[connection signal="area_entered" from="." to="." method="destroy"]
-[connection signal="body_entered" from="." to="." method="destroy"]
+[node name="Health" type="Node" parent="." unique_id=1179159675]
+unique_name_in_owner = true
+script = ExtResource("3_agf72")
+health = 1
+max_health = 1
+metadata/_custom_type_script = "uid://gl2b4woyndun"
+
+[connection signal="area_entered" from="." to="." method="hit"]

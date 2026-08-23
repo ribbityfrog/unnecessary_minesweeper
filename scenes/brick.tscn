@@ -4,8 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://bv1rc3au0u1i6" path="res://scenes/mine.tscn" id="2_d02mp"]
 [ext_resource type="Material" uid="uid://yn0217xxqorm" path="res://nodes/brick/assets/brick.tres" id="2_x7yom"]
 [ext_resource type="Material" uid="uid://b2uutfegfkfao" path="res://nodes/brick/assets/brick_debug.tres" id="3_d02mp"]
+[ext_resource type="Script" uid="uid://8adx7sl8jifq" path="res://resources/damages.gd" id="3_tj0p1"]
 [ext_resource type="Script" uid="uid://dsvmudqjs24w1" path="res://nodes/health_label.gd" id="4_tj0p1"]
 [ext_resource type="Script" uid="uid://gl2b4woyndun" path="res://nodes/behaviours/health.gd" id="5_ihofc"]
+
+[sub_resource type="Resource" id="Resource_k3u8x"]
+script = ExtResource("3_tj0p1")
+impact = 1000
+metadata/_custom_type_script = "uid://8adx7sl8jifq"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m55k0"]
 albedo_color = Color(0.61127055, 0.97295517, 0.7785218, 1)
@@ -17,6 +23,7 @@ collision_layer = 16
 collision_mask = 8
 script = ExtResource("1_ci8dj")
 mine_scene = ExtResource("2_d02mp")
+damages = SubResource("Resource_k3u8x")
 health = NodePath("Health")
 health_label = NodePath("HealthLabel")
 mines_count_label = NodePath("MinesCount")

@@ -60,7 +60,7 @@ func create_minefield() -> void:
 	tween.set_parallel(true)
 	tween.set_trans(Tween.TRANS_BACK)
 	for brick in field:
-		tween.tween_property(brick, "position", Vector3(brick.position.x + rng.randf_range(-10, 10), brick.position.y, brick.position.z + rng.randf_range(-10, 10)), 1)
+		tween.tween_property(brick, "position", Vector3(brick.position.x + rng.randf_range(-10, 10), brick.position.y, brick.position.z + rng.randf_range(-8, 8)), 1)
 		tween.tween_property(brick, "rotation_degrees", Vector3(rng.randf_range(0, 90), rng.randf_range(0, 90), rng.randf_range(0, 90)), 1)
 	
 	tween.chain()
