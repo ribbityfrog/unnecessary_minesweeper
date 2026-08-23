@@ -132,6 +132,6 @@ func destroy(delayed: float = 0.0) -> void:
 
 	if (has_mine):
 		var mine = mine_scene.instantiate() as Mine
+		mine.position = position
 		get_tree().current_scene.add_child(mine)
-		mine.global_position = global_position
 		mine.start()

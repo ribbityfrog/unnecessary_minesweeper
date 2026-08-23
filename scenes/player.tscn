@@ -1,9 +1,28 @@
 [gd_scene format=3 uid="uid://u3yks53qgywd"]
 
 [ext_resource type="Script" uid="uid://bedj2loha8rkm" path="res://nodes/player/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://btm7ymk2lufwt" path="res://scenes/rocketlauncher.tscn" id="2_qhqgy"]
 [ext_resource type="SpriteFrames" uid="uid://bstx6idha135i" path="res://nodes/player/assets/censored.tres" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://chq0h2hmfx7fn" path="res://scenes/deagle.tscn" id="3_qlg0r"]
 [ext_resource type="Script" uid="uid://c4p83awkcuy8q" path="res://nodes/behaviours/sight.gd" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://dilugb24phnc2" path="res://resources/inventory/inventory_weapon.gd" id="4_tuyoq"]
+[ext_resource type="Script" uid="uid://dsxbsu6so5yuw" path="res://nodes/weapon_holder/weapon_holder.gd" id="5_qlg0r"]
+
+[sub_resource type="Resource" id="Resource_smehm"]
+script = ExtResource("4_tuyoq")
+name = "Deagle"
+scene = ExtResource("3_qlg0r")
+placement_position = Vector3(-0.15, 0.15, -0.5)
+metadata/_custom_type_script = "uid://dilugb24phnc2"
+
+[sub_resource type="Resource" id="Resource_fjrip"]
+script = ExtResource("4_tuyoq")
+name = "RocketLauncher"
+scene = ExtResource("2_qhqgy")
+away_speed = 0.2
+away_transition = 5
+draw_speed = 0.3
+metadata/_custom_type_script = "uid://dilugb24phnc2"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -22,12 +41,14 @@ script = ExtResource("4_dqkch")
 camera = NodePath("..")
 metadata/_custom_type_script = "uid://c4p83awkcuy8q"
 
-[node name="WeaponHolder" type="Node3D" parent="PlayerCamera" unique_id=479814234]
+[node name="WeaponHolder" type="Node3D" parent="PlayerCamera" unique_id=1060226444 node_paths=PackedStringArray("sight", "shooter")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0)
-
-[node name="Deagle" parent="PlayerCamera/WeaponHolder" unique_id=22554569 node_paths=PackedStringArray("sight") instance=ExtResource("3_qlg0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0.15, -0.5)
-sight = NodePath("../../Sight")
+script = ExtResource("5_qlg0r")
+sight = NodePath("../Sight")
+shooter = NodePath("..")
+weapon_default = 5
+weapons = Array[ExtResource("4_tuyoq")]([SubResource("Resource_smehm"), SubResource("Resource_fjrip")])
+metadata/_custom_type_script = "uid://dsxbsu6so5yuw"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1665657152]
 shape = SubResource("CapsuleShape3D_u8vuu")

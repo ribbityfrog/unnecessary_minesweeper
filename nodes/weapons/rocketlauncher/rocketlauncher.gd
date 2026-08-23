@@ -4,18 +4,13 @@ extends AWeapon
 
 @export var rocket: PackedScene
 
-var root: Window
-
-
-func _ready() -> void:
-	root = get_tree().root
-
-
 func _shoot() -> void:
+	print("RocketLauncher: _shoot()")
 	var rocket_instance: Rocket = rocket.instantiate()
+	print("RocketLauncher: rocket_instance: ", rocket_instance)
 	rocket_instance.damages = damages.duplicate()
 	rocket_instance.global_transform = nozzle.global_transform
 	rocket_instance.rotation = global_rotation
-	rocket_instance.origin = %PlayerCamera
-	root.add_child(rocket_instance)
+	rocket_instance.origin = shooter
+	get_tree().current_scene.add_child(rocket_instance)
 	super._shoot()
