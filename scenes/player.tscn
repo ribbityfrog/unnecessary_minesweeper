@@ -21,7 +21,8 @@ name = "RocketLauncher"
 scene = ExtResource("2_qhqgy")
 away_speed = 0.2
 away_transition = 5
-draw_speed = 0.3
+draw_speed = 0.5
+draw_transition = 11
 metadata/_custom_type_script = "uid://dilugb24phnc2"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]

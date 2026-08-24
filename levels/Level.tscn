@@ -8,9 +8,7 @@
 
 [node name="Minefield" type="Node3D" parent="." unique_id=751882303]
 script = ExtResource("1_xubwl")
-width = 3
-height = 3
-mines = 3
+mines = 32
 metadata/_custom_type_script = "uid://8a8eohjtbwq4"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1702823666]

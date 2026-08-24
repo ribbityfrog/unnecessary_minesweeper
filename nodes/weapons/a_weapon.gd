@@ -13,7 +13,7 @@ extends Node3D
 var ammo: int = 0
 
 var can_shoot: bool = true
-
+var is_swapping: bool = true
 
 signal shot
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if (can_shoot and Input.is_action_just_pressed('shoot')):
+	if (can_shoot and not is_swapping and Input.is_action_just_pressed('shoot')):
 		_shoot()
 
 

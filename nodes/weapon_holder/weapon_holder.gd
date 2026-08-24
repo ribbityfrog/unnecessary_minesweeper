@@ -12,25 +12,41 @@ var current_weapon: AWeapon
 
 
 func _ready() -> void:
-	spawn_weapon(weapon_default)
+	current_weapon_index = fix_index(weapon_default)
+	spawn_weapon()
+	current_weapon.is_swapping = false
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton):
 		if (event.is_action_pressed("wp_up")):
-			spawn_weapon(current_weapon_index + 1)
+			switch_weapon(current_weapon_index + 1)
 		elif (event.is_action_pressed("wp_down")):
-			spawn_weapon(current_weapon_index - 1)
+			switch_weapon(current_weapon_index - 1)
 
 
-func spawn_weapon(wp_index: int):
-	if (wp_index < 0):
-		wp_index = weapons.size() - 1
-	elif (wp_index >= weapons.size()):
-		wp_index = 0
+func switch_weapon(wp_index: int):
+	var new_index := fix_index(wp_index)
 
-	current_weapon_index = wp_index
+	var old_weapon := weapons[current_weapon_index]
+	var new_weapon := weapons[new_index]
 
+	current_weapon.is_swapping = true
+	current_weapon_index = new_index
+
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(old_weapon.away_transition)
+	tween.tween_property(self, "rotation_degrees", Vector3(-45, 0, 0), old_weapon.away_speed)
+	tween.tween_callback(spawn_weapon)
+	tween.set_trans(new_weapon.draw_transition)
+	tween.tween_property(self, "rotation_degrees", Vector3(0, 0, 0), new_weapon.draw_speed)
+	tween.tween_callback(func():
+		current_weapon.is_swapping = false
+	)
+
+
+func spawn_weapon():
 	var wp := weapons[current_weapon_index]
 	var weapon := wp.scene.instantiate()
 
@@ -50,3 +66,10 @@ func spawn_weapon(wp_index: int):
 		weapon.ammo = wp.ammo
 
 	add_child(weapon)
+
+func fix_index(index: int) -> int:
+	if (index < 0):
+		return weapons.size() - 1
+	elif (index >= weapons.size()):
+		return 0
+	return index

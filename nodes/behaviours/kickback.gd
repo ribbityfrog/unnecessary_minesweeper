@@ -17,6 +17,7 @@ func _ready() -> void:
 	orig_position = item.position
 	orig_rotation = item.rotation_degrees
 
+
 func kickback() -> void:
 	var tween := create_tween()
 	tween.set_ease(tween.EASE_OUT)
