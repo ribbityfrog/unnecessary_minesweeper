@@ -1,6 +1,7 @@
 class_name WeaponHolder
 extends Node3D
 
+
 @export var sight: Sight
 @export var shooter: Node3D
 

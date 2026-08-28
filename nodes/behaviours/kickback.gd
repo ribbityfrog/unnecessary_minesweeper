@@ -5,8 +5,12 @@ extends Node
 
 @export var kb_position: Vector3 = Vector3.ZERO
 @export var kb_rotation: Vector3 = Vector3.ZERO
+
 @export var kick_speed: float = 0.5
+@export var kick_trans := Tween.TRANS_EXPO
+
 @export var back_speed: float = 1.5
+@export var back_trans := Tween.TRANS_BACK
 
 var orig_position: Vector3
 var orig_rotation: Vector3
@@ -21,9 +25,9 @@ func _ready() -> void:
 func kickback() -> void:
 	var tween := create_tween()
 	tween.set_ease(tween.EASE_OUT)
-	tween.set_trans(tween.TRANS_EXPO)
+	tween.set_trans(kick_trans)
 	tween.tween_property(item, "position", kb_position + orig_position, kick_speed)
 	tween.parallel().tween_property(item, "rotation_degrees", kb_rotation + orig_rotation, kick_speed)
-	tween.set_trans(tween.TRANS_BACK)
+	tween.set_trans(back_trans)
 	tween.tween_property(item, "position", orig_position, back_speed)
 	tween.parallel().tween_property(item, "rotation_degrees", orig_rotation, back_speed)

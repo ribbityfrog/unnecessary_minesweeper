@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c40d0acijt54g"]
+
+[ext_resource type="Script" uid="uid://b754fonf51ai8" path="res://nodes/weapons/remote/remote.gd" id="1_m14kl"]
+[ext_resource type="PackedScene" uid="uid://h0c1kggavbxe" path="res://nodes/weapons/remote/assets/remote.glb" id="1_mfhk8"]
+[ext_resource type="Script" uid="uid://bqng0uws4ax5n" path="res://nodes/behaviours/kickback.gd" id="3_c5mex"]
+[ext_resource type="Texture2D" uid="uid://c3u53brx0if4d" path="res://nodes/weapons/remote/assets/crosshair.png" id="4_g6wd6"]
+
+[node name="Remote" type="Node3D" unique_id=295290961]
+script = ExtResource("1_m14kl")
+cooldown = 0.3
+metadata/_custom_type_script = "uid://b754fonf51ai8"
+
+[node name="Sketchfab_Scene" parent="." unique_id=509337774 instance=ExtResource("1_mfhk8")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+
+[node name="Nozzle" type="Node3D" parent="." unique_id=1484153098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22923832, 0.004455313)
+
+[node name="Kickback" type="Node" parent="." unique_id=2105311419 node_paths=PackedStringArray("item")]
+script = ExtResource("3_c5mex")
+item = NodePath("..")
+kb_position = Vector3(0, 0.05, 0)
+kb_rotation = Vector3(-20, 0, 0)
+kick_speed = 0.25
+back_speed = 0.25
+metadata/_custom_type_script = "uid://bqng0uws4ax5n"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1757171257]
+modulate = Color(1, 1, 1, 0.7058824)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -37.0
+offset_right = 37.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g6wd6")
+
+[connection signal="shot" from="." to="Kickback" method="kickback"]

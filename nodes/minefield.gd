@@ -15,8 +15,8 @@ extends Node3D
 
 @export var player: Node3D
 
-var rng = RandomNumberGenerator.new()
 var field: Array[Brick]
+
 
 signal minefield_ready
 
@@ -47,7 +47,7 @@ func create_minefield() -> void:
 
 	for i in range(mines):
 		while true:
-			var index := rng.randi_range(0, field_tmp.size() - 1)
+			var index := randi_range(0, field_tmp.size() - 1)
 			var brick := field_tmp[index]
 			if (brick.mines_around_recount() > mines_around_max):
 				field_tmp.remove_at(index)
@@ -60,9 +60,9 @@ func create_minefield() -> void:
 	tween.set_parallel(true)
 	tween.set_trans(Tween.TRANS_BACK)
 	for brick in field:
-		tween.tween_property(brick, "position", Vector3(brick.position.x + rng.randf_range(-10, 10), brick.position.y, brick.position.z + rng.randf_range(-8, 8)), 1)
-		tween.tween_property(brick, "rotation_degrees", Vector3(rng.randf_range(0, 90), rng.randf_range(0, 90), rng.randf_range(0, 90)), 1)
-	
+		tween.tween_property(brick, "position", Vector3(brick.position.x + randf_range(-10, 10), brick.position.y, brick.position.z + randf_range(-8, 8)), 1)
+		tween.tween_property(brick, "rotation_degrees", Vector3(randf_range(0, 90), randf_range(0, 90), randf_range(0, 90)), 1)
+
 	tween.chain()
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	for brick in field:

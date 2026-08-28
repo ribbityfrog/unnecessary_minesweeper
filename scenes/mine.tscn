@@ -3,15 +3,24 @@
 [ext_resource type="Script" uid="uid://c7orlq1n4mcx" path="res://nodes/mine/mine.gd" id="1_i6hay"]
 [ext_resource type="PackedScene" uid="uid://d1i830kjfarys" path="res://nodes/mine/assets/underwater_mine.glb" id="1_iuis7"]
 [ext_resource type="PackedScene" uid="uid://cntis6ukdx8x0" path="res://scenes/mine_attachment.tscn" id="2_j4qwv"]
+[ext_resource type="Script" uid="uid://8adx7sl8jifq" path="res://resources/damages.gd" id="2_kxfpg"]
 [ext_resource type="Script" uid="uid://bl1n14tg5ltjc" path="res://nodes/behaviours/bezier_curve.gd" id="3_m55k0"]
+[ext_resource type="Script" uid="uid://gl2b4woyndun" path="res://nodes/behaviours/health.gd" id="5_361d0"]
+
+[sub_resource type="Resource" id="Resource_361d0"]
+script = ExtResource("2_kxfpg")
+impact = 200
+metadata/_custom_type_script = "uid://8adx7sl8jifq"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dfktb"]
 radius = 0.3
 
-[node name="Mine" type="Area3D" unique_id=1973530854 node_paths=PackedStringArray("bezier")]
+[node name="Mine" type="Area3D" unique_id=1973530854 node_paths=PackedStringArray("health", "bezier")]
 collision_layer = 128
-collision_mask = 0
+collision_mask = 2
 script = ExtResource("1_i6hay")
+health = NodePath("Health")
+damages = SubResource("Resource_361d0")
 bezier = NodePath("BezierCurve")
 attachment_scene = ExtResource("2_j4qwv")
 metadata/_custom_type_script = "uid://c7orlq1n4mcx"
@@ -26,3 +35,11 @@ transform = Transform3D(0.8, 0, 0, 0, -3.4969112e-08, 0.8, 0, -0.8, -3.4969112e-
 script = ExtResource("3_m55k0")
 time_to_target = 1.5
 metadata/_custom_type_script = "uid://bl1n14tg5ltjc"
+
+[node name="Health" type="Node" parent="." unique_id=1619203053]
+script = ExtResource("5_361d0")
+health = 6
+max_health = 6
+metadata/_custom_type_script = "uid://gl2b4woyndun"
+
+[connection signal="area_entered" from="." to="." method="hit"]

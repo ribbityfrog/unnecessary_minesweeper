@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://c4p83awkcuy8q" path="res://nodes/behaviours/sight.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://dilugb24phnc2" path="res://resources/inventory/inventory_weapon.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://dsxbsu6so5yuw" path="res://nodes/weapon_holder/weapon_holder.gd" id="5_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://c40d0acijt54g" path="res://scenes/remote.tscn" id="7_smehm"]
+[ext_resource type="PackedScene" uid="uid://dnvh7d4sbbfxl" path="res://scenes/finger.tscn" id="8_ur7pv"]
 
 [sub_resource type="Resource" id="Resource_smehm"]
 script = ExtResource("4_tuyoq")
@@ -25,9 +27,29 @@ draw_speed = 0.5
 draw_transition = 11
 metadata/_custom_type_script = "uid://dilugb24phnc2"
 
+[sub_resource type="Resource" id="Resource_ur7pv"]
+script = ExtResource("4_tuyoq")
+name = "Remote"
+scene = ExtResource("7_smehm")
+away_speed = 0.1
+draw_speed = 0.1
+placement_position = Vector3(-0.15, 0.15, -0.5)
+placement_rotation = Vector3(-60, 0, 0)
+metadata/_custom_type_script = "uid://dilugb24phnc2"
+
+[sub_resource type="Resource" id="Resource_y4r1p"]
+script = ExtResource("4_tuyoq")
+name = "Finger"
+scene = ExtResource("8_ur7pv")
+away_speed = 0.1
+draw_speed = 0.1
+draw_transition = 7
+placement_position = Vector3(-0.15, 0.2, -0.5)
+metadata/_custom_type_script = "uid://dilugb24phnc2"
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1662203932 node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" unique_id=1662203932 node_paths=PackedStringArray("camera") groups=["player"]]
 script = ExtResource("1_3vyb7")
 camera = NodePath("PlayerCamera")
 metadata/_custom_type_script = "uid://bedj2loha8rkm"
@@ -40,6 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0.5, -0.6)
 unique_name_in_owner = true
 script = ExtResource("4_dqkch")
 camera = NodePath("..")
+collision_mask = 65690
 metadata/_custom_type_script = "uid://c4p83awkcuy8q"
 
 [node name="WeaponHolder" type="Node3D" parent="PlayerCamera" unique_id=1060226444 node_paths=PackedStringArray("sight", "shooter")]
@@ -48,7 +71,7 @@ script = ExtResource("5_qlg0r")
 sight = NodePath("../Sight")
 shooter = NodePath("..")
 weapon_default = 5
-weapons = Array[ExtResource("4_tuyoq")]([SubResource("Resource_smehm"), SubResource("Resource_fjrip")])
+weapons = Array[ExtResource("4_tuyoq")]([SubResource("Resource_smehm"), SubResource("Resource_fjrip"), SubResource("Resource_ur7pv"), SubResource("Resource_y4r1p")])
 metadata/_custom_type_script = "uid://dsxbsu6so5yuw"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1665657152]

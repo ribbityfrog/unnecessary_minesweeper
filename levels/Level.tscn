@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://u3yks53qgywd" path="res://scenes/player.tscn" id="2_0ydld"]
 [ext_resource type="PackedScene" uid="uid://w5m07fllymdy" path="res://scenes/platform.tscn" id="3_rlxyy"]
 
-[node name="game" type="Node3D" unique_id=1488013494]
+[node name="Game" type="Node3D" unique_id=1488013494]
 
 [node name="Minefield" type="Node3D" parent="." unique_id=751882303]
 script = ExtResource("1_xubwl")

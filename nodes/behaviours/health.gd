@@ -3,7 +3,7 @@ extends Node
 
 @export var health: int = 100
 @export var max_health: int = 100
-@export var invincible: bool = false
+@export var is_invincible: bool = false
 
 var is_dead: bool = false
 
@@ -23,7 +23,7 @@ func propagate() -> void:
 func configure(new_health: int = 100, new_max_health: int = 150, new_invincible: bool = false) -> void:
 	health = new_health
 	max_health = new_max_health
-	invincible = new_invincible
+	is_invincible = new_invincible
 
 	emit_signal("configured", health)
 	propagate()
@@ -32,7 +32,7 @@ func lose_health(amount: int) -> void:
 	if (health <= 0):
 		return
 
-	if (invincible):
+	if (is_invincible):
 		emit_signal("invincibility_hit", amount)
 		return
 
@@ -58,9 +58,9 @@ func gain_health(amount: int) -> void:
 	propagate()
 
 func set_invincible(value: bool) -> void:
-	invincible = value
+	is_invincible = value
 
-	if (invincible):
+	if (is_invincible):
 		emit_signal("invincibility_enabled")
 	else:
 		emit_signal("invincibility_disabled")

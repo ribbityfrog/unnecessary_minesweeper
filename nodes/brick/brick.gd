@@ -14,6 +14,7 @@ extends Area3D
 
 @export_group("Materials")
 @export var material_default: StandardMaterial3D
+@export var material_metal: StandardMaterial3D
 @export var material_debug: StandardMaterial3D
 
 var placed_position: Vector3 = Vector3.ZERO
@@ -112,6 +113,21 @@ func apply_explosion_damages(dam: int):
 
 	if (health.is_dead):
 		destroy()
+
+
+func metallized() -> void:
+	if (is_destroyed):
+		return
+
+	if (health.is_invincible):
+		geometry.material = material_debug if has_mine else material_default
+		health_label.modulate = Color.hex(0xffffffff)
+		health.is_invincible = false
+	else:
+		geometry.material = material_metal
+		health_label.modulate = Color.hex(0xffee8cff)
+		health.is_invincible = true
+
 
 func destroy(delayed: float = 0.0) -> void:
 	if (is_destroyed):

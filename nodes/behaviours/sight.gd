@@ -3,6 +3,7 @@ extends Node
 
 @export var camera: Camera3D
 @export var distance_max := 100.0
+@export_flags_3d_physics var collision_mask: int
 
 var current_collision: CollisionObject3D
 
@@ -21,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var space := world.direct_space_state
-	var query := PhysicsRayQueryParameters3D.create(camera.global_transform.origin, camera.global_transform.origin + (-camera.global_transform.basis.z * distance_max), Bitfield.layers_to_int([2, 4, 5, 8]))
+	var query := PhysicsRayQueryParameters3D.create(camera.global_transform.origin, camera.global_transform.origin + (-camera.global_transform.basis.z * distance_max), collision_mask)
 	query.collide_with_areas = true
 	var result := space.intersect_ray(query)
 
