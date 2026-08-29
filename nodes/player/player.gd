@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody3D
 
 @export var camera: Camera3D
+@export var weapon_holder: WeaponHolder
 
 @export_group('Movements')
 @export var speed_rotation := 0.2

@@ -49,9 +49,10 @@ metadata/_custom_type_script = "uid://dilugb24phnc2"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1662203932 node_paths=PackedStringArray("camera") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1662203932 node_paths=PackedStringArray("camera", "weapon_holder") groups=["player"]]
 script = ExtResource("1_3vyb7")
 camera = NodePath("PlayerCamera")
+weapon_holder = NodePath("PlayerCamera/WeaponHolder")
 metadata/_custom_type_script = "uid://bedj2loha8rkm"
 
 [node name="PlayerCamera" type="Camera3D" parent="." unique_id=1953818570]
@@ -70,7 +71,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0)
 script = ExtResource("5_qlg0r")
 sight = NodePath("../Sight")
 shooter = NodePath("..")
-weapon_default = 5
 weapons = Array[ExtResource("4_tuyoq")]([SubResource("Resource_smehm"), SubResource("Resource_fjrip"), SubResource("Resource_ur7pv"), SubResource("Resource_y4r1p")])
 metadata/_custom_type_script = "uid://dsxbsu6so5yuw"
 

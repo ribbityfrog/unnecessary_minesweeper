@@ -5,7 +5,8 @@ extends Node3D
 @export var sight: Sight
 @export var shooter: Node3D
 
-@export var weapon_default := 1
+@export var weapon_default := -1
+@export var is_locked: bool = true
 @export var weapons: Array[InventoryWeapon]
 
 var current_weapon_index: int
@@ -19,6 +20,9 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if (is_locked):
+		return
+
 	if (event is InputEventMouseButton):
 		if (event.is_action_pressed("wp_up")):
 			switch_weapon(current_weapon_index + 1)
@@ -67,6 +71,23 @@ func spawn_weapon():
 		weapon.ammo = wp.ammo
 
 	add_child(weapon)
+
+
+func lock_weapon(index: int = -1):
+	if (is_locked):
+		return
+
+	switch_weapon(index)
+	is_locked = true
+
+
+func unlock_weapon(index: int = 0):
+	if (not is_locked):
+		return
+
+	is_locked = false
+	switch_weapon(index)
+
 
 func fix_index(index: int) -> int:
 	if (index < 0):

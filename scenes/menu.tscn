@@ -1,57 +1,113 @@
 [gd_scene format=3 uid="uid://dnjsoh2eu8edo"]
 
 [ext_resource type="Script" uid="uid://ccftpavf31ib" path="res://nodes/menu/menu.gd" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://cfbcwjcxoo45l" path="res://nodes/menu/menu_start.gd" id="2_con2f"]
+[ext_resource type="Script" uid="uid://1kyi8p5f0tfx" path="res://nodes/menu/menu_difficulty.gd" id="2_vjb58"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3eks"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_42lo8"]
 size = Vector3(1, 1, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhnvy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_con2f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ytvr"]
 
 [node name="Menu" type="Node3D" unique_id=1092536649]
 script = ExtResource("1_yqeox")
 metadata/_custom_type_script = "uid://ccftpavf31ib"
 
-[node name="start" type="Area3D" parent="." unique_id=1165965649]
+[node name="Start" type="Area3D" parent="." unique_id=1875538124 node_paths=PackedStringArray("geometry")]
 collision_layer = 65536
 collision_mask = 0
+script = ExtResource("2_con2f")
+geometry = NodePath("CSGBox3D")
+default_color = Color(1, 1, 1, 1)
+hovered_color = Color(0.8666667, 0.79607844, 0.56078434, 1)
+metadata/_custom_type_script = "uid://cfbcwjcxoo45l"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="start" unique_id=85202788]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="Start" unique_id=58177627]
 size = Vector3(1, 1, 0.2)
+material = SubResource("StandardMaterial3D_g3eks")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="start" unique_id=1140912427]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start" unique_id=267027526]
 shape = SubResource("BoxShape3D_42lo8")
 
-[node name="easy" type="Area3D" parent="." unique_id=2066915564]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.25, 0)
+[node name="Easy" type="Area3D" parent="." unique_id=1277681662 node_paths=PackedStringArray("geometry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.75, 0)
 collision_layer = 65536
 collision_mask = 0
+script = ExtResource("2_vjb58")
+geometry = NodePath("CSGBox3D")
+width = 12
+height = 10
+mines = 18
+default_color = Color(1, 1, 1, 1)
+hovered_color = Color(0.78406596, 0.8520907, 0.7715801, 1)
+selected_color = Color(0.47704083, 0.93956006, 0.6747421, 1)
+metadata/_custom_type_script = "uid://1kyi8p5f0tfx"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="easy" unique_id=601399532]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="Easy" unique_id=251700802]
 size = Vector3(1, 1, 0.2)
+material = SubResource("StandardMaterial3D_mhnvy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="easy" unique_id=1819233834]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Easy" unique_id=1276632773]
 shape = SubResource("BoxShape3D_42lo8")
 
-[node name="medium" type="Area3D" parent="." unique_id=855407697]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023, 1.2, 0)
+[node name="Medium" type="Area3D" parent="." unique_id=311249703 node_paths=PackedStringArray("geometry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 collision_layer = 65536
 collision_mask = 0
+script = ExtResource("2_vjb58")
+geometry = NodePath("CSGBox3D")
+is_selected = true
+width = 20
+height = 10
+mines = 32
+default_color = Color(1, 1, 1, 1)
+hovered_color = Color(0.78406596, 0.8520907, 0.7715801, 1)
+selected_color = Color(0.47704083, 0.93956006, 0.6747421, 1)
+metadata/_custom_type_script = "uid://1kyi8p5f0tfx"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="medium" unique_id=2042503334]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="Medium" unique_id=117875884]
 size = Vector3(1, 1, 0.2)
+material = SubResource("StandardMaterial3D_con2f")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="medium" unique_id=1203050302]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Medium" unique_id=198928203]
 shape = SubResource("BoxShape3D_42lo8")
 
-[node name="hard" type="Area3D" parent="." unique_id=1084199766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.25, 0)
+[node name="Hard" type="Area3D" parent="." unique_id=1518073116 node_paths=PackedStringArray("geometry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.75, 0)
 collision_layer = 65536
 collision_mask = 0
+script = ExtResource("2_vjb58")
+geometry = NodePath("CSGBox3D")
+width = 25
+height = 15
+mines = 75
+default_color = Color(1, 1, 1, 1)
+hovered_color = Color(0.78406596, 0.8520907, 0.7715801, 1)
+selected_color = Color(0.47704083, 0.93956006, 0.6747421, 1)
+metadata/_custom_type_script = "uid://1kyi8p5f0tfx"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="hard" unique_id=1134006157]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="Hard" unique_id=499073072]
 size = Vector3(1, 1, 0.2)
+material = SubResource("StandardMaterial3D_4ytvr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hard" unique_id=1863982002]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hard" unique_id=1283912215]
 shape = SubResource("BoxShape3D_42lo8")
+
+[connection signal="mouse_entered" from="Start" to="Start" method="hover"]
+[connection signal="mouse_exited" from="Start" to="Start" method="unhover"]
+[connection signal="selected" from="Start" to="." method="start_game"]
+[connection signal="mouse_entered" from="Easy" to="Easy" method="hover"]
+[connection signal="mouse_exited" from="Easy" to="Easy" method="unhover"]
+[connection signal="selected" from="Easy" to="." method="select_difficulty"]
+[connection signal="mouse_entered" from="Medium" to="Medium" method="hover"]
+[connection signal="mouse_exited" from="Medium" to="Medium" method="unhover"]
+[connection signal="selected" from="Medium" to="." method="select_difficulty"]
+[connection signal="mouse_entered" from="Hard" to="Hard" method="hover"]
+[connection signal="mouse_exited" from="Hard" to="Hard" method="unhover"]
+[connection signal="selected" from="Hard" to="." method="select_difficulty"]

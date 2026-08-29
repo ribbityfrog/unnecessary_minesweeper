@@ -24,10 +24,14 @@ signal minefield_ready
 func _ready() -> void:
 	if (mine_scene == null):
 		mine_scene = preload("res://scenes/brick.tscn")
-	create_minefield()
+	# create_minefield()
 
 
-func create_minefield() -> void:
+func create_minefield(new_width: int, new_height: int, new_mines: int) -> void:
+	width = new_width
+	height = new_height
+	mines = new_mines
+
 	field = []
 	var field_tmp: Array[Brick] = []
 

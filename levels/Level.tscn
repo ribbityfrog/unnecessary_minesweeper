@@ -1,18 +1,25 @@
 [gd_scene format=3 uid="uid://di5pljuqhe7oc"]
 
+[ext_resource type="Script" uid="uid://ctsgdy3vu34oa" path="res://nodes/weapon_holder/game.gd" id="1_eelho"]
 [ext_resource type="Script" uid="uid://8a8eohjtbwq4" path="res://nodes/minefield.gd" id="1_xubwl"]
 [ext_resource type="PackedScene" uid="uid://u3yks53qgywd" path="res://scenes/player.tscn" id="2_0ydld"]
 [ext_resource type="PackedScene" uid="uid://w5m07fllymdy" path="res://scenes/platform.tscn" id="3_rlxyy"]
+[ext_resource type="PackedScene" uid="uid://dnjsoh2eu8edo" path="res://scenes/menu.tscn" id="4_n5p7m"]
 
-[node name="Game" type="Node3D" unique_id=1488013494]
+[node name="Game" type="Node3D" unique_id=251465266 node_paths=PackedStringArray("minefield", "player")]
+script = ExtResource("1_eelho")
+menu_scene = ExtResource("4_n5p7m")
+minefield = NodePath("Minefield")
+player = NodePath("Player")
+metadata/_custom_type_script = "uid://ctsgdy3vu34oa"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1702823666]
+transform = Transform3D(0.921539, 1.1691599e-09, -0.3882859, 0.18090777, 0.8848302, 0.42935774, 0.34356707, -0.46591383, 0.8154054, -7.1468544, 9.799591, 20.861975)
 
 [node name="Minefield" type="Node3D" parent="." unique_id=751882303]
 script = ExtResource("1_xubwl")
 mines = 32
 metadata/_custom_type_script = "uid://8a8eohjtbwq4"
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1702823666]
-transform = Transform3D(0.92153895, 1.4901161e-08, -0.3882859, 0.18090776, 0.8848302, 0.42935774, 0.34356704, -0.46591383, 0.81540537, -7.1468544, 9.799591, 20.861975)
 
 [node name="Player" parent="." unique_id=886564007 instance=ExtResource("2_0ydld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 15)
