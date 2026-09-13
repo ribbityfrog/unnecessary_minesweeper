@@ -17,6 +17,9 @@ signal invincibility_enabled
 signal invincibility_disabled
 signal invincibility_hit(amount: int)
 
+func setup() -> void:
+	emit_signal("configured", health)
+
 func propagate() -> void:
 	emit_signal("updated", health)
 	
@@ -25,7 +28,7 @@ func configure(new_health: int = 100, new_max_health: int = 150, new_invincible:
 	max_health = new_max_health
 	is_invincible = new_invincible
 
-	emit_signal("configured", health)
+	setup()
 	propagate()
 
 func lose_health(amount: int) -> void:

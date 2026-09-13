@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cr54h0m84d561"]
+
+[ext_resource type="Shader" uid="uid://bgb0wdvihatrf" path="res://shaders/energy.gdshader" id="1_0mte6"]
+
+[resource]
+shader = ExtResource("1_0mte6")
+shader_parameter/energy_total = 100.0
+shader_parameter/energy_left = 50.0
+shader_parameter/energy_lost = 25.0
+shader_parameter/energy_color = Color(0.25241473, 0.3838542, 0.1485588, 1)
+shader_parameter/energy_lost_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/energy_losing_color = Color(0.8, 0.6, 0, 1)
