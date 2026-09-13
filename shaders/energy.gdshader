@@ -14,7 +14,7 @@ void fragment() {
 	float energy_losing = energy_curr + energy_lost_ratio;
 
 	float is_active = step(UV.x, energy_curr);
-	float is_losing = step(UV.x, energy_losing) * (1.0 - is_active);
+	float is_losing = step(UV.x + (fract(UV.y * 5.0) * 0.01 * TIME), energy_losing) * (1.0 - is_active);
 
 	float center_dist = distance(UV.y, 0.5);
 	// float is_odd_frag = mod(FRAGCOORD.x + FRAGCOORD.y, 1.0);
